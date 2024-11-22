@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E-Hospital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .hdp {
+            font-size: 35px;
+            color: #e42e4d;
+        }
+
+        .logo {
+            width: 50%;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .result-message {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .result-message.error {
+            color: red;
+        }
+
+        .result-message.success {
+            color: blue;
+        }
+
+        .pic {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            margin: 20px 0;
+        }
+
+        .suggestions {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+            border: 2px solid #d0d0d0;
+        }
+
+        .suggestions ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .custom-button {
+            color: white;
+            background-color: #e42e4d;
+            width: 150px;
+            height: 45px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: #d62d42;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hdp {
+                font-size: 28px;
+            }
+
+            .pic {
+                max-width: 80%;
+            }
+
+            .custom-button {
+                width: 120px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hdp {
+                font-size: 24px;
+            }
+
+            .pic {
+                max-width: 90%;
+            }
+
+            .custom-button {
+                width: 100px;
+                height: 35px;
+                font-size: 12px;
+            }
+        }
+
+</style>
+
+</head>
+<body>
+
+    <!-- Results Section -->
+    <div class="container">
+        <h2>Results:</h2>
+
+        <!-- Display Prediction -->
+  {% if prediction == 1%}
+  <div class="result-message error">
+    <p>Sorry to say, the chances of having heart disease are high. Please consult a doctor.</p>
+</div>
+<img class="pic" src="https://res.cloudinary.com/dp8gu4t9m/image/upload/v1729244703/Designer_7_yvi7hq.jpg" alt="Heart Disease Image">
+
+<!-- Suggestions for Heart Disease -->
+<div class="suggestions">
+    <h3>Suggestions:</h3>
+    <ul>
+        <li>Consult a cardiologist immediately for further tests and treatment.</li>
+        <li>Follow a heart-healthy diet (low in fats, cholesterol, and sodium).</li>
+        <li>Engage in regular physical activity such as walking, swimming, or biking.</li>
+        <li>Avoid smoking and reduce alcohol consumption.</li>
+        <li>Manage stress through relaxation techniques, such as meditation or yoga.</li>
+    </ul>
+</div>
+<div>
+    <button class="custom-button" onclick="window.history.back()">Back</button>
+</div>
+  {% elif prediction == 0%}
+  <div class="result-message success">
+    <p>No worries! You don't have heart disease.</p>
+</div>
+<img class="pic" src="https://res.cloudinary.com/dp8gu4t9m/image/upload/v1729244733/Designer_2_raruzn.jpg" alt="Healthy Heart Image">
+
+<!-- Suggestions for No Heart Disease -->
+<div class="suggestions">
+    <h3>Suggestions:</h3>
+    <ul>
+        <li>Continue following a healthy lifestyle to maintain your heart health.</li>
+        <li>Eat a balanced diet rich in fruits, vegetables, and whole grains.</li>
+        <li>Exercise regularly to improve cardiovascular health and overall well-being.</li>
+        <li>Monitor your blood pressure and cholesterol levels regularly.</li>
+        <li>Limit stress by engaging in relaxation practices like meditation or mindfulness.</li>
+    </ul>
+</div>
+
+<div>
+    <button class="custom-button" onclick="window.history.back()">Back</button>
+</div>
+	{% endif %}
+
+</div>
+  
+  </body>
+  </html>
+  
+
+    

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRP Hospital</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("https://res.cloudinary.com/dp8gu4t9m/image/upload/v1732243012/Designer_5_z5jgdy.jpg");
+      background-size: cover;
+      color: #333;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgb(17, 178, 252);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .navbar a {
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: inline-block;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: rgba(56, 15, 238, 0.8);
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin: 80px auto 0;
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      display: none; /* Hide all sections by default */
+    }
+
+    .section.active {
+      display: block; 
+      /* Display the active section */
+    }
+
+    h2 {
+      color: rgb(252, 17, 107);
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 16px;
+      color: #555;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(200, 200, 200, 0.6);
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+      background: rgba(240, 240, 255, 0.7);
+      color: rgb(56, 56, 56);
+      transition: border 0.3s ease, background-color 0.3s ease;
+    }
+
+    input[type=text]:focus, input[type=password]:focus {
+      border-color: rgba(252, 17, 107, 0.8);
+      background-color: rgba(255, 255, 255, 0.9);
+      outline: none;
+    }
+
+    .btn {
+      background-color: rgba(56, 15, 238);
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: linear-gradient(rgba(15, 45, 238, 0.9));
+      transform: scale(1.05);
+    }
+
+    .back-btn {
+      background-color: rgb(252, 17, 107);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .back-btn:hover {
+      background-color: rgba(200, 10, 90, 0.8);
+    }
+    .hidden {
+            display: none;
+        }
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .section {
+        width: 95%;
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      input[type=text], input[type=password] {
+        font-size: 14px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="javascript:void(0)" onclick="navigateTo('home')">Home</a>
+    <a href="javascript:void(0)" onclick="navigateTo('about')">About</a>
+    <a href="javascript:void(0)" onclick="navigateTo('login')">Login</a>
+
+  </div>
+
+  <!-- Home Section -->
+  <div id="home" class="section active">
+    <h2>Welcome to SRP Hospital</h2>
+    <p>SRP Hospital is committed to providing top-notch healthcare services with compassion and cutting-edge technology. Your health, our priority!</p>
+  </div>
+
+  <!-- About Section -->
+  <div id="about" class="section">
+    <h2>About SRP Hospital</h2>
+    <p>Since its inception in 2023, SRP Hospital has been a beacon of excellence in healthcare. We pride ourselves on advanced facilities, expert staff, and unmatched patient care.</p>
+    <button class="back-btn" onclick="navigateTo('home')">Back to Home</button>
+  </div>
+
+  <!-- Login Section -->
+  <div id="login" class="section">
+    <h2>Patient Login</h2>
+    <form>
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="button" class="back-btn" onclick="login()">Login</button>
+    </form>
+    <button class="back-btn" onclick="navigateTo('home')">Back to Home</button>
+  </div>
+
+  <!-- Prediction Section -->
+  <div id="predict" class="section hidden">
+    <h2>Heart Disease Prediction</h2>
+    <form action="/predict" method="post">
+      <input type="text" name="chest pain type" placeholder="Chest Pain Type (0-3)" required="required" />
+      <input type="text" name="resting blood pressure" placeholder="Resting Blood Pressure" required="required" />
+      <input type="text" name="serum cholesterol" placeholder="Serum Cholesterol (mg/dL)" required="required" />
+      <input type="text" name="fasting blood sugar > 120 mg/dl" placeholder="Fasting Blood Sugar > 120 mg/dL" required="required" />
+      <input type="text" name="resting ECG results(0-2)" placeholder="Resting ECG Results (0-2)" required="required" />
+      <input type="text" name="maximum heart rate" placeholder="Maximum Heart Rate Achieved" required="required" />
+      <input type="text" name="exercise-induced angina" placeholder="Exercise Induced Angina" required="required" />
+      <button type="submit" class="btn">Predict</button>
+    </form>
+    <button class="back-btn" onclick="navigateTo('home')">Back to Home</button>
+  </div>
+
+  <script>
+    // Function to navigate between sections
+    function navigateTo(sectionId) {
+      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    // Function to simulate login and navigate to prediction page
+    function login() {
+      // You can add authentication logic here (e.g., validating username and password)
+      // For now, assuming the login is always successful
+      navigateTo('predict');
+    }
+  </script>
+
+</body>
+</html>
